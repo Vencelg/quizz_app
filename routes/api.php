@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResources([
     'quizzes' => \App\Http\Controllers\QuizController::class,
     'questions' => \App\Http\Controllers\QuestionController::class,
+    'answers' => \App\Http\Controllers\AnswerController::class,
 ]);

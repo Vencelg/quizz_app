@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::apiResources([
-        'quizzes' => \App\Http\Controllers\QuizController::class,
-        'questions' => \App\Http\Controllers\QuestionController::class,
-        'answers' => \App\Http\Controllers\AnswerController::class,
+        'quizzes' => \App\Http\Controllers\api\QuizController::class,
+        'questions' => \App\Http\Controllers\api\QuestionController::class,
+        'answers' => \App\Http\Controllers\api\AnswerController::class,
     ]);
 });
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
-    Route::delete('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
-    Route::get('score/{id}', [\App\Http\Controllers\AuthController::class, 'showScore'])->middleware('auth:sanctum');
-    Route::post('score', [\App\Http\Controllers\AuthController::class, 'storeScore'])->middleware('auth:sanctum');
+    Route::post('login', [\App\Http\Controllers\api\AuthController::class, 'login']);
+    Route::delete('logout', [\App\Http\Controllers\api\AuthController::class, 'logout'])->middleware('auth:sanctum');
+    Route::get('score/{id}', [\App\Http\Controllers\api\AuthController::class, 'showScore'])->middleware('auth:sanctum');
+    Route::post('score', [\App\Http\Controllers\api\AuthController::class, 'storeScore'])->middleware('auth:sanctum');
 });
